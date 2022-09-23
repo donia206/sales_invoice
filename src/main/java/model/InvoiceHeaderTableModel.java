@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Vector;
 
 public class InvoiceHeaderTableModel extends AbstractTableModel {
-    private final String[] colNames = {"No.", "Date", "Customer", "Total"};
+    public static final String[] colNames = {"No.", "Date", "Customer", "Total"};
 
     private Vector<InvoiceHeader> invoiceHeaders = new Vector<>();
 

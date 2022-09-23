@@ -4,9 +4,15 @@ import model.InvoiceHeaderTableModel;
 import model.InvoiceItemsTableModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
+import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static model.Globals.dateFormat;
 
 public class HomePageGUI extends JFrame {
     private JPanel mainPanel;
@@ -46,9 +52,17 @@ public class HomePageGUI extends JFrame {
 
     private void initTables() {
         invoicesTableModel = new InvoiceHeaderTableModel();
+        invoicesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         invoicesTable.setModel(invoicesTableModel);
-
+        // Render Date with this format dd-MM-yyyy
+        invoicesTable.getColumnModel().getColumn(1).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                return super.getTableCellRendererComponent(table, dateFormat.format(value), isSelected, hasFocus, row, column);
+            }
+        });
         invoiceItemsTableModel = new InvoiceItemsTableModel();
+        invoiceItemsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         invoiceItemsTable.setModel(invoiceItemsTableModel);
     }
 

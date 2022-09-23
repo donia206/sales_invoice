@@ -5,15 +5,10 @@ import java.util.Vector;
 
 public class InvoiceItemsTableModel extends AbstractTableModel {
     private Vector<InvoiceLine> lines = new Vector<>();
-    private final String[] colNames = {"No.", "Item Name", "Item Price", "Count", "Total"};
+    public static final String[] colNames = {"No.", "Item Name", "Item Price", "Count", "Total"};
 
     public Vector<InvoiceLine> getData() {
         return lines;
-    }
-
-    public void setLines(Vector<InvoiceLine> lines) {
-        this.lines = lines;
-        fireTableDataChanged();
     }
 
     @Override

@@ -198,12 +198,17 @@
                 <constraints/>
                 <properties>
                   <autoResizeMode value="2"/>
-                  <cellSelectionEnabled value="false"/>
-                  <columnSelectionAllowed value="false"/>
+                  <cellSelectionEnabled value="true"/>
+                  <columnSelectionAllowed value="true"/>
+                  <dragEnabled value="false"/>
+                  <dropMode value="USE_SELECTION"/>
+                  <editingRow value="0"/>
+                  <enabled value="true"/>
                   <name value="Invoice Items"/>
                   <rowSelectionAllowed value="true"/>
                 </properties>
                 <clientProperties>
+                  <JTable.autoStartsEdit class="java.lang.Boolean" value="true"/>
                   <terminateEditOnFocusLost class="java.lang.Boolean" value="false"/>
                 </clientProperties>
               </component>
