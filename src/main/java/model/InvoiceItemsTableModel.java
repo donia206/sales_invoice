@@ -13,6 +13,7 @@ public class InvoiceItemsTableModel extends AbstractTableModel {
 
     public void setLines(Vector<InvoiceLine> lines) {
         this.lines = lines;
+        fireTableDataChanged();
     }
 
     @Override

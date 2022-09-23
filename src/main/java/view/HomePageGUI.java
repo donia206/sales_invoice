@@ -107,6 +107,14 @@ public class HomePageGUI extends JFrame {
         return loadFile;
     }
 
+    public JTable getInvoicesTable() {
+        return invoicesTable;
+    }
+
+    public JTable getInvoiceItemsTable() {
+        return invoiceItemsTable;
+    }
+
     public InvoiceItemsTableModel getInvoiceItemsTableModel() {
         return invoiceItemsTableModel;
     }

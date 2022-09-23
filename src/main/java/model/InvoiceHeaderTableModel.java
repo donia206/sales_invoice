@@ -11,6 +11,7 @@ public class InvoiceHeaderTableModel extends AbstractTableModel {
 
     public void setInvoiceHeaders(Vector<InvoiceHeader> invoiceHeaders) {
         this.invoiceHeaders = invoiceHeaders;
+        fireTableDataChanged();
     }
 
     public Vector<InvoiceHeader> getData() {

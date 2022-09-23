@@ -62,7 +62,10 @@
             <children>
               <component id="7f96f" class="javax.swing.JTable" binding="invoicesTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <cellSelectionEnabled value="false"/>
+                  <rowSelectionAllowed value="true"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -194,13 +197,14 @@
               <component id="af5ea" class="javax.swing.JTable" binding="invoiceItemsTable">
                 <constraints/>
                 <properties>
-                  <autoResizeMode value="4"/>
+                  <autoResizeMode value="2"/>
                   <cellSelectionEnabled value="false"/>
                   <columnSelectionAllowed value="false"/>
                   <name value="Invoice Items"/>
+                  <rowSelectionAllowed value="true"/>
                 </properties>
                 <clientProperties>
-                  <terminateEditOnFocusLost class="java.lang.Boolean" value="true"/>
+                  <terminateEditOnFocusLost class="java.lang.Boolean" value="false"/>
                 </clientProperties>
               </component>
             </children>

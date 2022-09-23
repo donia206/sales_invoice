@@ -1,6 +1,10 @@
 package model;
 
-import java.util.ArrayList;
+import org.apache.commons.lang3.time.DateUtils;
+
+import javax.swing.text.DateFormatter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Vector;
 
@@ -13,8 +17,13 @@ public class InvoiceHeader {
     private float total;
     private Vector<InvoiceLine> invoiceLines;
 
-    public InvoiceHeader(int invoiceNum)
-    {
+    public InvoiceHeader() {
+        invoiceNum = ++maxInvoice;
+        invoiceLines = new Vector<>();
+        invoiceDate = new Date();
+    }
+
+    public InvoiceHeader(int invoiceNum) {
         this.invoiceNum = invoiceNum;
     }
 
