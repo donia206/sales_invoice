@@ -1,19 +1,16 @@
 package model;
 
-import org.apache.commons.lang3.time.DateUtils;
-
-import javax.swing.text.DateFormatter;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Vector;
 
 public class InvoiceHeader {
     public static int maxInvoice = 0;
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     private int invoiceNum;
     private Date invoiceDate;
-    private String custName;
+    private String customerName;
     private float total;
     private Vector<InvoiceLine> invoiceLines;
 
@@ -43,12 +40,12 @@ public class InvoiceHeader {
         this.invoiceDate = invoiceDate;
     }
 
-    public String getCustName() {
-        return custName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustName(String custName) {
-        this.custName = custName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public float getTotal() {

@@ -3,17 +3,13 @@ package model;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
 
-import static model.Globals.dateFormat;
+import static model.InvoiceHeader.dateFormat;
 
 public class FileOperations {
     public static void saveData(File folderPath, Vector<InvoiceHeader> headers) throws IOException {
@@ -24,7 +20,7 @@ public class FileOperations {
         headerWriter.writeNext(InvoiceHeaderTableModel.colNames);
 
         for (InvoiceHeader header: headers) {
-            String[] headerRow = {String.valueOf(header.getInvoiceNum()), dateFormat.format(header.getInvoiceDate()), header.getCustName(), String.valueOf(header.getTotal())};
+            String[] headerRow = {String.valueOf(header.getInvoiceNum()), dateFormat.format(header.getInvoiceDate()), header.getCustomerName(), String.valueOf(header.getTotal())};
             headerWriter.writeNext(headerRow);
             for (InvoiceLine line : header.getInvoiceLines()) {
                 String[] lineRow = {String.valueOf(line.getInvoiceNumber()), line.getItemName(), String.valueOf(line.getItemPrice()), String.valueOf(line.getCount()), String.valueOf(line.getTotal())};
@@ -49,10 +45,8 @@ public class FileOperations {
                 line.setItemName(nextLine[1]);
                 line.setItemPrice(Float.parseFloat(nextLine[2]));
                 line.setCount(Integer.parseInt(nextLine[3]));
-                Vector<InvoiceLine> v = linesMap.putIfAbsent(invoiceNum, new Vector<>());
-                if(v != null)
-                    v.add(line);
-
+                linesMap.computeIfAbsent(invoiceNum, k -> new Vector<>());
+                linesMap.get(invoiceNum).add(line);
             } catch (ArrayIndexOutOfBoundsException ignored) {}
         }
 
@@ -69,12 +63,11 @@ public class FileOperations {
                 InvoiceHeader header = new InvoiceHeader(invoiceNum);
                 header.setInvoiceNum(invoiceNum);
                 header.setInvoiceDate(dateFormat.parse(nextLine[1]));
-                header.setCustName(nextLine[2]);
+                header.setCustomerName(nextLine[2]);
                 header.setTotal(Float.parseFloat(nextLine[3]));
 
                 Vector<InvoiceLine> lines = linesMap.get(invoiceNum);
                 header.setInvoiceLines(lines == null ? new Vector<>(): lines);
-
                 headers.add(header);
 
             } catch (ArrayIndexOutOfBoundsException ignored) {}

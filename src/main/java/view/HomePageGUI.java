@@ -5,14 +5,12 @@ import model.InvoiceItemsTableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.nio.file.Paths;
 
-import static model.Globals.dateFormat;
+import static model.InvoiceHeader.dateFormat;
 
 public class HomePageGUI extends JFrame {
     private JPanel mainPanel;
@@ -27,10 +25,15 @@ public class HomePageGUI extends JFrame {
     private JButton cancelBtn;
     private JLabel totalLbl;
     private JButton addItemBtn;
+    private JTextField itemNameTxt;
+    private JTextField priceTxt;
+    private JTextField countTxt;
+    private JButton updateBtn;
     private JMenuItem saveFile;
     private JMenuItem loadFile;
     private InvoiceItemsTableModel invoiceItemsTableModel;
     private InvoiceHeaderTableModel invoicesTableModel;
+    private final JFileChooser fileChooser = new JFileChooser();
 
     public HomePageGUI()
     {
@@ -39,13 +42,19 @@ public class HomePageGUI extends JFrame {
         this.setSize(1200, 800);
         this.setLocation(200, 200);
         this.add(mainPanel);
+
         initMenu();
         initTables();
         initFormattedText();
+        initFileChooser();
+    }
+
+    private void initFileChooser() {
+        fileChooser.setCurrentDirectory(Paths.get(".").toFile());
     }
 
     private void initFormattedText() {
-        DateFormatter formatter = new DateFormatter(new SimpleDateFormat("dd-MM-yyyy"));
+        DateFormatter formatter = new DateFormatter(dateFormat);
         DefaultFormatterFactory formatterFactory = new DefaultFormatterFactory(formatter);
         dateTxt.setFormatterFactory(formatterFactory);
     }
@@ -135,5 +144,25 @@ public class HomePageGUI extends JFrame {
 
     public InvoiceHeaderTableModel getInvoicesTableModel() {
         return invoicesTableModel;
+    }
+
+    public JTextField getItemNameTxt() {
+        return itemNameTxt;
+    }
+
+    public JTextField getPriceTxt() {
+        return priceTxt;
+    }
+
+    public JTextField getCountTxt() {
+        return countTxt;
+    }
+
+    public JButton getUpdateBtn() {
+        return updateBtn;
+    }
+
+    public JFileChooser getFileChooser() {
+        return fileChooser;
     }
 }
